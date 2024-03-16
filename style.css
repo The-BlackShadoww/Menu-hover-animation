@@ -1,0 +1,113 @@
+
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     /* background: #1d1825; */
+     /* background: url("./hamed-daram--5fbmfaInwg-unsplash.jpg");
+     background-repeat: no-repeat;
+     background-size: cover; */
+}
+.wrapper{
+     /* border: 1px solid red; */
+}
+
+.menu_item{
+     position: relative;
+     padding: 0 6vw;
+     /* border: 1px solid green; */
+}
+.menu_item_link{
+     display: inline-block;
+     cursor: pointer;
+     position: relative;
+     -webkit-text-stroke: 1.5px #000;
+     -webkit-text-fill-color:transparent;
+     color: transparent;
+     transition: opacity 0.4s;
+}
+.menu_item_link::before {
+     all: initial;
+     font-family:monospace;
+     counter-increment: menu;
+     position: absolute;
+     bottom: 60%;
+     pointer-events: none;
+}
+.menu_item_link:hover{
+     transition-duration: 0.1s;
+     opacity: 0;
+}
+.menu_item_img{
+     pointer-events: none;
+     position: absolute;
+     height: 50vh;
+     max-width: 400px;
+     opacity: 0;
+     left: 100%;
+     top: 50%;
+     transform: translate3d(calc(-100% - 6vw), -30%, 0) translate3d(0, 20px, 0);
+}
+.menu_item_link:hover  + .menu_item_img {
+     opacity: 1;
+     transform: translate3d(calc(-100% - 6vw), -30%, 0) rotate3d(0, 0, 1, 4deg);
+     transition: all 0.4s;
+}
+
+.menu{
+     padding: 10vh 0  25vh;
+     --offset: 20vw;
+     --move-initial: calc(-25% + var(--offset));
+     --move-final: calc(-50% + var(--offset));
+     font-size: 7vw;
+     /* border: 1px solid blue; */
+}
+.marquee{
+     position: absolute;
+     top: 0;
+     left: 0;
+     overflow: hidden;
+     color: #000;
+     pointer-events: none;
+     mix-blend-mode: difference;
+     /* background: transparent; */
+     /* border: 1px solid tomato; */
+}
+.marquee_inner{
+     width: fit-content;
+     display: flex;
+     position: relative;
+     animation: marquee 5s linear infinite;
+     animation-play-state: paused;
+     opacity: 0;
+     transition:  opacity 0.1s;
+     overflow-x: hidden;
+     /* border: 5px solid steelblue; */
+}
+
+.menu_item_link:hover ~ .marquee .marquee_inner{
+     animation-play-state:running ;
+     opacity: 1;
+     transition-duration: 0.4s;
+}
+
+.menu_item_link,
+.marquee span{
+     white-space: nowrap;
+     font-size: 7vw;
+     padding: 0 1vw;
+     font-weight: 900;
+     line-height: 1.20;
+}
+.marquee span{
+     font-style: italic;
+}
+
+@keyframes marquee{
+     0%{
+          transform: translate3d(var(--move-initial), 0, 0);
+     }
+     100%{
+          transform: translate3d(var(--move-final), 0, 0);
+     }
+}
